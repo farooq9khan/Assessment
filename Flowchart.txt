@@ -1,0 +1,78 @@
+flowchart TD
+    %% User Authentication and Access Control
+    A[User Login] -->|Valid Email & Password| B{Authentication Successful}
+    B -->|Yes| C[Access Dashboard]
+    B -->|No| D[Account Locked after 3 Failed Attempts]
+    C --> I[MFA Verification]
+    I -->|OTP Verified| E{Role-Based Access}
+    E -->|Patient| F[Patient Dashboard]
+    E -->|Doctor| G[Doctor Dashboard]
+    E -->|Admin| H[Admin Dashboard]
+
+    %% Patient Management and Appointment Scheduling
+    F --> J[Update Profile and Contact Details]
+    F --> K[Book Appointment]
+    K --> L{Select Appointment Type}
+    L --> M[Video Appointment]
+    L --> N[Clinic Appointment]
+    L --> O[Home Visit Appointment]
+    K --> P[Receive Confirmation via Email or SMS]
+    F --> Q[View or Cancel Appointments]
+
+    %% Medical Records and Lab Results
+    F --> R[Access Medical Records]
+    R --> S[View Lab Results and Prescriptions]
+    R --> T[Download Reports as PDF]
+    F --> U[Upload Medical Documents]
+    U --> V{Acceptable Formats: PDF or DOCX, Max 5MB}
+    V --> W[Upload Successful]
+
+    %% Doctor Interaction and Consultation
+    F --> X[Send Message to Doctor]
+    X --> Y[Receive Response within 24 Hours]
+    G --> Z[Video Consultation]
+    Z --> AA[Generate Secure Link]
+    G --> AB[Add Consultation Notes]
+
+    %% Prescription and Medication Management
+    G --> AC[Create Prescription]
+    AC --> AD[Share Prescription with Patient]
+    F --> AE[Request Prescription Refill]
+    AE --> AF[Approval by Doctor]
+    F --> AG[Set Medication Reminders]
+
+    %% Billing, Insurance, and Payments
+    F --> AH[View Billing Information]
+    AH --> AI{Choose Payment Option}
+    AI --> AJ[Make Payment]
+    F --> AK[Upload Insurance Details]
+    AK --> AL[Admin Verification]
+    AL --> AM[Receive Verification Notification]
+
+    %% Notifications and Reminders
+    C --> AN[Set Notification Preferences]
+    AN --> AO{Select Notification Type}
+    AO --> AP[Appointment Reminders]
+    AO --> AQ[Lab Result Notifications]
+    AO --> AR[Prescription Refill Alerts]
+    AO --> AS[Billing Alerts]
+
+    %% Health Data Analytics and Reporting
+    G --> AT[View Patient Health Dashboard]
+    G --> AU[Generate Health Reports]
+    AU --> AV[Export to CSV or PDF]
+
+    %% Compliance and Security
+    A --> AW[Ensure HIPAA Compliance]
+    AW --> AX[Encrypt Data]
+    AX --> AY[Maintain Audit Logs]
+    AY --> AZ[Auto Logout after Inactivity]
+
+    %% Non-Functional Requirements
+    AZ --> BA[Accessibility and WCAG Compliance]
+    BA --> BB[Responsive Design]
+    BA --> BC[Scalability and Performance]
+
+    %% Data Backup and Retention
+    BC --> BD[Perform Hourly Data Backup]
+    BD --> BE[Retain Data for 7 Years]
